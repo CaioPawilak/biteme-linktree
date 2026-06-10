@@ -1,0 +1,490 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bite Me — Tributo Avril Lavigne | Curitiba</title>
+<meta name="description" content="Bite Me — tributo autêntico a Avril Lavigne, de fã para fã. Curitiba, Brasil.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Special+Elite&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+
+/* ── TOKENS ─────────────────────────────────────────────────── */
+:root {
+  --pink:      #EC1C8C;
+  --pink-hot:  #FF2D6F;
+  --pink-soft: #FFC6E5;
+  --ink:       #0B0B0B;
+  --ink2:      #15101A;
+  --paper2:    #FFFFFF;
+  --text:      #F2EEF1;
+  --muted:     #9A9298;
+  --check:     72px;
+  --plum:      #2c0f1e;   /* dark checker pink — bands       */
+  --plum-deep: #1d0a15;   /* subtle base checker pink         */
+}
+
+/* ── RESET ──────────────────────────────────────────────────── */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'DM Sans',sans-serif;
+  background:#0a0a0a;
+  color:var(--text);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img { max-width:100%; display:block; }
+a { text-decoration:none; color:inherit; }
+
+/* ── STARS ──────────────────────────────────────────────────── */
+.star {
+  display:inline-block; width:1em; height:1em; background:var(--pink);
+  clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+}
+.star.outline { background:#fff; }
+
+/* ── CHECKERBOARD — integrated as a soft gradient band ──────── */
+.checker-band {
+  position:relative;
+  height:480px;
+  margin:-160px 0;                /* gently bleeds into both neighbours */
+  z-index:1; pointer-events:none;
+  background:
+    repeating-conic-gradient(#0a0a0a 0% 25%, var(--plum) 0% 50%)
+    0 0 / var(--check) var(--check);
+  -webkit-mask-image:linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.10) 20%, rgba(0,0,0,.4) 35%, rgba(0,0,0,.85) 46%, #000 50%, rgba(0,0,0,.85) 54%, rgba(0,0,0,.4) 65%, rgba(0,0,0,.10) 80%, transparent 100%);
+  mask-image:linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.10) 20%, rgba(0,0,0,.4) 35%, rgba(0,0,0,.85) 46%, #000 50%, rgba(0,0,0,.85) 54%, rgba(0,0,0,.4) 65%, rgba(0,0,0,.10) 80%, transparent 100%);
+}
+.checker-band.tall { height:540px; }
+/* a couple of floating stars riding the band */
+.cb-star { position:absolute; width:40px; height:40px; background:#fff;
+  clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); opacity:.9; }
+
+/* ── LAYOUT (full-width sections) ───────────────────────────── */
+section { position:relative; z-index:2; }
+.wrap { max-width:1180px; margin:0 auto; padding:0 52px; }
+.pad  { padding:96px 0; }
+@media(max-width:760px){ .wrap { padding:0 22px; } .pad { padding:64px 0; } }
+
+/* faint checker texture fading in from the top of each block */
+.tex { position:relative; overflow:hidden; }
+.tex::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:60%;
+  background:radial-gradient(ellipse 80% 100% at 50% 0%, rgba(236,28,140,0.09), transparent 70%);
+  pointer-events:none;
+}
+
+/* ── NAV ────────────────────────────────────────────────────── */
+#nav {
+  position:fixed; top:0; left:0; right:0; z-index:200; height:62px;
+  display:flex; align-items:center; justify-content:space-between; padding:0 30px;
+  background:rgba(11,11,11,.9); backdrop-filter:blur(16px);
+  border-bottom:3px solid var(--pink);
+}
+.nav-logo img { height:32px; }
+.nav-links { display:flex; gap:28px; list-style:none; }
+.nav-links a { font-family:'Special Elite',monospace; font-size:13px; letter-spacing:.04em; color:#fff; transition:color .15s; }
+.nav-links a:hover { color:var(--pink-soft); }
+.nav-right { display:flex; align-items:center; gap:15px; }
+.nav-icon { color:#fff; transition:color .15s; display:flex; }
+.nav-icon:hover { color:var(--pink); }
+@media(max-width:860px){ .nav-links { display:none; } }
+
+/* ── HERO (full-bleed band photo) ───────────────────────────── */
+#hero {
+  position:relative; min-height:100vh;
+  display:flex; align-items:center; justify-content:center; overflow:hidden;
+}
+.hero-photo {
+  position:absolute; inset:0;
+  background:url('uploads/0272 Bite Me.png') center 16% / cover no-repeat;
+  filter:brightness(.42) saturate(1.25);
+  transform:scale(1.05); transition:transform 9s ease;
+}
+#hero:hover .hero-photo { transform:scale(1); }
+.hero-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to bottom, rgba(11,11,11,.25) 0%, rgba(11,11,11,.5) 55%, rgba(11,11,11,1) 100%);
+}
+.hero-content { position:relative; z-index:3; text-align:center; padding:120px 28px 100px; display:flex; flex-direction:column; align-items:center; }
+.hero-logo {
+  width:min(440px,80vw); margin:0 auto 28px;
+  filter:drop-shadow(0 0 55px rgba(236,28,140,.6)) drop-shadow(0 0 16px rgba(255,255,255,.2));
+  animation:float 5s ease-in-out infinite;
+}
+@keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-13px);} }
+.hero-tagline { font-family:'Special Elite',monospace; font-size:clamp(14px,2vw,18px); color:#fff; margin-bottom:8px; }
+.hero-tagline .pk { color:var(--pink-hot); }
+.hero-city { font-family:'Anton',sans-serif; font-size:clamp(22px,4.5vw,36px); letter-spacing:.18em; color:var(--pink); text-transform:uppercase; margin-bottom:36px; }
+.hero-cta {
+  display:inline-flex; align-items:center; gap:9px; background:var(--pink); color:#fff;
+  font-family:'Anton',sans-serif; font-size:16px; letter-spacing:.06em; text-transform:uppercase;
+  padding:15px 36px; border:3px solid #fff; box-shadow:5px 5px 0 var(--pink-hot);
+  transition:transform .12s, box-shadow .12s, background .15s;
+}
+.hero-cta:hover { transform:translate(-2px,-2px); box-shadow:7px 7px 0 var(--pink-hot); background:var(--pink-hot); }
+.hero-cta:active { transform:translate(2px,2px); box-shadow:2px 2px 0 var(--pink-hot); }
+.hero-scroll {
+  position:absolute; bottom:120px; left:50%; transform:translateX(-50%); z-index:3;
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  color:#fff; font-family:'Special Elite',monospace; font-size:10px; letter-spacing:.24em; text-transform:uppercase;
+  animation:sb 2.6s ease-in-out infinite; opacity:.8;
+}
+@keyframes sb { 0%,100%{transform:translateX(-50%) translateY(0); opacity:.45;} 50%{transform:translateX(-50%) translateY(8px); opacity:.9;} }
+
+/* ── SECTION HEADERS ────────────────────────────────────────── */
+.eyebrow { display:inline-flex; align-items:center; gap:8px; font-family:'Special Elite',monospace; font-size:13px; letter-spacing:.06em; color:var(--pink-soft); margin-bottom:14px; }
+.eyebrow .star { width:13px; height:13px; }
+.headline { font-family:'Anton',sans-serif; font-size:clamp(44px,7vw,82px); line-height:.92; letter-spacing:.01em; text-transform:uppercase; color:#fff; margin-bottom:18px; }
+.headline .pk { color:var(--pink); }
+.headline .hl { background:var(--pink); color:#fff; padding:0 .12em; -webkit-box-decoration-break:clone; box-decoration-break:clone; }
+.rule-check { height:14px; width:160px; background:repeating-conic-gradient(#fff 0% 25%, var(--pink) 0% 50%) 0 0 / 14px 14px; border:2px solid #fff; margin-bottom:44px; }
+
+/* ── SOBRE ──────────────────────────────────────────────────── */
+.sobre-grid { display:grid; grid-template-columns:1.1fr 1fr; gap:64px; align-items:center; }
+.sobre-text p { font-size:17px; line-height:1.78; color:#cfc7cd; margin-bottom:16px; }
+.sobre-text strong { color:#fff; }
+.sobre-text em { font-style:normal; color:var(--pink); font-weight:700; }
+.sobre-sig { margin-top:30px; height:60px; filter:brightness(1.4); }
+.sobre-photo { position:relative; border:6px solid #fff; box-shadow:14px 14px 0 var(--pink); background:#fff; padding:6px; }
+.sobre-photo img { width:100%; aspect-ratio:5/4; object-fit:cover; object-position:center 56%; }
+.sobre-photo::before { content:''; position:absolute; top:-22px; right:-22px; width:54px; height:54px; z-index:2; background:var(--pink); clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); }
+@media(max-width:860px){ .sobre-grid { grid-template-columns:1fr; gap:44px; } .sobre-photo { order:-1; } .sobre-photo img { aspect-ratio:4/3; object-position:center 56%; } }
+
+/* ── INTEGRANTES ────────────────────────────────────────────── */
+.members-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+.member { background:#000; border:4px solid #fff; position:relative; transition:transform .18s, box-shadow .18s; }
+.member:hover { transform:translateY(-6px); box-shadow:8px 12px 0 var(--pink); }
+.member-check { height:14px; background:repeating-conic-gradient(#fff 0% 25%, var(--pink) 0% 50%) 0 0 / 14px 14px; }
+.member-photo { overflow:hidden; }
+.member-photo img { width:100%; aspect-ratio:2/3; object-fit:cover; object-position:top; filter:grayscale(.12) contrast(1.05); transition:transform .45s, filter .45s; }
+.member:hover .member-photo img { transform:scale(1.05); filter:grayscale(0) contrast(1.1); }
+.member-cap { padding:14px 16px 18px; text-align:center; background:#000; }
+.member-name { font-family:'Anton',sans-serif; font-size:26px; letter-spacing:.03em; color:#fff; line-height:1; text-transform:uppercase; }
+.member-role { font-family:'Special Elite',monospace; font-size:12px; letter-spacing:.08em; color:var(--pink-soft); margin-top:5px; }
+@media(max-width:860px){ .members-grid { grid-template-columns:repeat(2,1fr); gap:14px; } }
+
+/* ── GALERIA ────────────────────────────────────────────────── */
+.gallery-grid { display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:240px; gap:14px; }
+.g { position:relative; overflow:hidden; cursor:zoom-in; border:4px solid #fff; background:#000; }
+.g.tall { grid-row:span 2; } .g.wide { grid-column:span 2; }
+.g img { width:100%; height:100%; object-fit:cover; transition:transform .5s; }
+.g:hover img { transform:scale(1.07); }
+.g-ov { position:absolute; inset:0; background:rgba(236,28,140,.34); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s; }
+.g:hover .g-ov { opacity:1; }
+.g-ov .star { width:42px; height:42px; background:#fff; }
+@media(max-width:700px){ .gallery-grid { grid-template-columns:repeat(2,1fr); grid-auto-rows:180px; } .g.tall,.g.wide { grid-row:span 1; grid-column:span 1; } }
+
+/* ── SHOWS ──────────────────────────────────────────────────── */
+.shows-grid { display:grid; grid-template-columns:1fr 300px; gap:54px; align-items:start; }
+.show-list { list-style:none; }
+.show-row { display:grid; grid-template-columns:90px 1fr auto; align-items:center; gap:24px; padding:20px 0; border-bottom:2px solid rgba(255,255,255,.12); transition:padding-left .2s; }
+.show-row:first-child { border-top:2px solid rgba(255,255,255,.12); }
+.show-row:hover { padding-left:10px; }
+.show-date { font-family:'Anton',sans-serif; font-size:30px; color:var(--pink); letter-spacing:.02em; white-space:nowrap; }
+.show-venue { font-size:19px; font-weight:700; color:#fff; }
+.show-city  { font-family:'Special Elite',monospace; font-size:12px; color:#b9b2b6; margin-top:3px; }
+.show-cta { font-family:'Special Elite',monospace; font-size:12px; letter-spacing:.05em; color:#fff; padding:8px 16px; border:2px solid rgba(255,255,255,.25); white-space:nowrap; transition:border-color .2s, background .2s; }
+.show-cta:hover { border-color:var(--pink); background:var(--pink); }
+.shows-check { align-self:stretch; min-height:100%; border:5px solid #fff; background:repeating-conic-gradient(#fff 0% 25%, var(--pink) 0% 50%) 0 0 / 30px 30px; display:flex; align-items:center; justify-content:center; }
+.shows-check-badge { background:#000; color:#fff; border:4px solid #fff; padding:24px 20px; text-align:center; transform:rotate(-5deg); }
+.shows-check-badge .big { font-family:'Anton',sans-serif; font-size:44px; line-height:.9; color:var(--pink); }
+.shows-check-badge .small { font-family:'Special Elite',monospace; font-size:12px; margin-top:8px; letter-spacing:.05em; }
+@media(max-width:860px){ .shows-grid { grid-template-columns:1fr; gap:32px; } .shows-check { min-height:120px; order:-1; } .show-row { grid-template-columns:74px 1fr; } .show-cta { display:none; } }
+
+/* ── VIDEO ──────────────────────────────────────────────────── */
+.video-frame { border:6px solid #fff; box-shadow:14px 14px 0 var(--pink); background:#000; padding:6px; }
+.video-inner { position:relative; padding-bottom:56.25%; overflow:hidden; }
+.video-inner iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+/* ── CONTATO ────────────────────────────────────────────────── */
+.contato-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+.contact-links { display:flex; flex-direction:column; gap:11px; }
+.clink { display:flex; align-items:center; justify-content:space-between; padding:16px 22px; background:#161016; border:3px solid #fff; box-shadow:4px 4px 0 var(--pink); transition:transform .13s, box-shadow .13s, background .15s; }
+.clink:hover { transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--pink-hot); background:#1f1620; }
+.clink-left { display:flex; align-items:center; gap:14px; }
+.clink-icon { width:40px; height:40px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:var(--pink); color:#fff; border:2px solid #fff; }
+.clink-name { font-family:'Anton',sans-serif; font-size:17px; letter-spacing:.03em; text-transform:uppercase; color:#fff; }
+.clink-sub  { font-family:'Special Elite',monospace; font-size:11px; color:var(--muted); margin-top:2px; }
+.clink-arr  { font-family:'Anton',sans-serif; color:var(--pink); font-size:20px; }
+.contato-deco { border:6px solid #fff; box-shadow:14px 14px 0 var(--pink); background:#000; padding:38px; display:flex; flex-direction:column; align-items:center; gap:18px; text-align:center; }
+.contato-deco img { width:min(240px,90%); }
+.contato-deco .tag { font-family:'Special Elite',monospace; font-size:14px; color:#fff; }
+.contato-deco .tag .pk { color:var(--pink); }
+@media(max-width:860px){ .contato-grid { grid-template-columns:1fr; gap:40px; } .contato-deco { display:none; } }
+
+/* ── FOOTER ─────────────────────────────────────────────────── */
+footer { text-align:center; padding:54px 24px 48px; position:relative; z-index:2; }
+footer .star { width:16px; height:16px; margin:0 5px; vertical-align:middle; }
+footer p { font-family:'Special Elite',monospace; font-size:12px; color:var(--muted); letter-spacing:.05em; }
+
+/* ── LIGHTBOX ───────────────────────────────────────────────── */
+#lb { display:none; position:fixed; inset:0; z-index:500; background:rgba(11,11,11,.95); align-items:center; justify-content:center; }
+#lb.open { display:flex; }
+#lb img { max-width:min(92vw,960px); max-height:90vh; object-fit:contain; border:6px solid #fff; box-shadow:0 0 0 4px var(--pink); }
+#lb-close { position:absolute; top:20px; right:26px; font-family:'Anton',sans-serif; font-size:32px; color:#fff; cursor:pointer; opacity:.8; transition:transform .25s, opacity .2s; }
+#lb-close:hover { opacity:1; transform:rotate(90deg); }
+
+/* ── REVEAL ─────────────────────────────────────────────────── */
+.reveal { opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+.reveal.vis { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ╔════════════════════════ NAV ════════════════════════╗ -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo"><img src="uploads/Logo bite me branco sem fundo.png" alt="Bite Me"></a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#integrantes">Banda</a></li>
+    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#shows">Shows</a></li>
+    <li><a href="#video">Vídeo</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://www.instagram.com/bandabiteme" target="_blank" class="nav-icon" aria-label="Instagram">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"></circle></svg>
+    </a>
+    <a href="https://www.youtube.com/@bandabiteme" target="_blank" class="nav-icon" aria-label="YouTube">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 1.96A29 29 0 001 11.75a29 29 0 00.46 5.33 2.78 2.78 0 001.95 1.97C5.12 19.56 12 19.56 12 19.56s6.88 0 8.6-.46a2.78 2.78 0 001.94-1.95 29 29 0 00.46-5.25 29 29 0 00-.46-5.48z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"></polygon></svg>
+    </a>
+    <a href="https://www.tiktok.com/@bandabiteme" target="_blank" class="nav-icon" aria-label="TikTok">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.19 8.19 0 004.79 1.53V6.77a4.84 4.84 0 01-1.02-.08z"></path></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- ╔══════════════════ HERO (full-bleed photo) ══════════════╗ -->
+<section id="hero">
+  <div class="hero-photo"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <img class="hero-logo" src="uploads/Logo bite me branco sem fundo.png" alt="Bite Me — Tributo Avril Lavigne">
+    <p class="hero-tagline">❌ um tributo autêntico a Avril Lavigne <span class="pk">de fã para fã</span> 🤘</p>
+    <p class="hero-city">Curitiba · Brasil</p>
+    <a href="#shows" class="hero-cta">
+      Ver Shows
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </a>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+</section>
+
+<!-- checker gradient band -->
+<div class="checker-band tall"><span class="cb-star" style="left:14%;top:30%;transform:rotate(-12deg)"></span><span class="cb-star" style="right:12%;top:42%;transform:rotate(16deg);width:30px;height:30px"></span></div>
+
+<!-- ╔════════════════════════ SOBRE ══════════════════════╗ -->
+<section id="sobre" class="tex">
+  <div class="wrap pad">
+    <div class="sobre-grid">
+      <div class="sobre-text reveal">
+        <span class="eyebrow"><span class="star"></span> Sobre / About</span>
+        <h2 class="headline">Tributo<br>Avril <span class="pk">Lavigne</span></h2>
+        <div class="rule-check"></div>
+        <p>❌🖤 <strong>Bite Me</strong> é um tributo autêntico a Avril Lavigne criado <em>de fã para fã</em>. Energia crua, atitude pop-punk e muita nostalgia dos anos 2000.</p>
+        <p>From Curitiba with love — reproduzindo com fidelidade os maiores hits, de <em>Complicated</em> a <em>Bite Me</em>. Cada show é a melhor "damn thing" da sua noite.</p>
+        <p><strong>Curitiba, Paraná · Brasil</strong></p>
+      </div>
+      <div class="sobre-photo reveal">
+        <img src="uploads/0240 Bite Me.png" alt="Banda Bite Me">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="checker-band"><span class="cb-star" style="left:22%;top:36%;transform:rotate(10deg)"></span><span class="cb-star" style="right:18%;top:30%;transform:rotate(-14deg);width:32px;height:32px"></span></div>
+
+<!-- ╔══════════════════════ INTEGRANTES ══════════════════╗ -->
+<section id="integrantes" class="tex">
+  <div class="wrap pad">
+    <span class="eyebrow reveal"><span class="star"></span> A Banda / The Band</span>
+    <h2 class="headline reveal">Integ<span class="pk">rantes</span></h2>
+    <div class="rule-check reveal"></div>
+    <div class="members-grid">
+      <div class="member reveal">
+        <div class="member-check"></div>
+        <div class="member-photo"><img src="uploads/0148 Bite Me.png" alt="Isabela — Vocal"></div>
+        <div class="member-cap"><div class="member-name">Isabela</div><div class="member-role">★ Vocal</div></div>
+      </div>
+      <div class="member reveal">
+        <div class="member-check"></div>
+        <div class="member-photo"><img src="uploads/0083 Bite Me.png" alt="Caio — Guitarra"></div>
+        <div class="member-cap"><div class="member-name">Caio</div><div class="member-role">★ Guitarra</div></div>
+      </div>
+      <div class="member reveal">
+        <div class="member-check"></div>
+        <div class="member-photo"><img src="uploads/0081 Bite Me.png" alt="Sandro — Baixo"></div>
+        <div class="member-cap"><div class="member-name">Sandro</div><div class="member-role">★ Baixo</div></div>
+      </div>
+      <div class="member reveal">
+        <div class="member-check"></div>
+        <div class="member-photo"><img src="uploads/0102 Bite Me.png" alt="Gustavo — Bateria"></div>
+        <div class="member-cap"><div class="member-name">Gustavo</div><div class="member-role">★ Bateria</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="checker-band"><span class="cb-star" style="left:10%;top:40%;transform:rotate(-8deg);width:34px;height:34px"></span><span class="cb-star" style="right:14%;top:34%;transform:rotate(18deg)"></span></div>
+
+<!-- ╔════════════════════════ GALERIA ════════════════════╗ -->
+<section id="galeria" class="tex">
+  <div class="wrap pad">
+    <span class="eyebrow reveal"><span class="star"></span> Fotos / Gallery</span>
+    <h2 class="headline reveal">Gale<span class="pk">ria</span></h2>
+    <div class="rule-check reveal"></div>
+    <div class="gallery-grid">
+      <div class="g tall" onclick="openLb('uploads/0251 Bite Me.png')"><img src="uploads/0251 Bite Me.png" alt=""><div class="g-ov"><span class="star"></span></div></div>
+      <div class="g" onclick="openLb('uploads/0224 Bite Me.png')"><img src="uploads/0224 Bite Me.png" alt=""><div class="g-ov"><span class="star"></span></div></div>
+      <div class="g" onclick="openLb('uploads/0257 Bite Me.png')"><img src="uploads/0257 Bite Me.png" alt=""><div class="g-ov"><span class="star"></span></div></div>
+      <div class="g tall" onclick="openLb('uploads/0287 Bite Me.png')"><img src="uploads/0287 Bite Me.png" alt=""><div class="g-ov"><span class="star"></span></div></div>
+      <div class="g" onclick="openLb('uploads/0235 Bite Me.png')"><img src="uploads/0235 Bite Me.png" alt=""><div class="g-ov"><span class="star"></span></div></div>
+      <div class="g" onclick="openLb('uploads/0272 Bite Me.png')"><img src="uploads/0272 Bite Me.png" alt=""><div class="g-ov"><span class="star"></span></div></div>
+      <div class="g wide" onclick="openLb('uploads/0198 Bite Me.png')"><img src="uploads/0198 Bite Me.png" alt=""><div class="g-ov"><span class="star"></span></div></div>
+      <div class="g" onclick="openLb('uploads/0215 Bite Me.png')"><img src="uploads/0215 Bite Me.png" alt=""><div class="g-ov"><span class="star"></span></div></div>
+      <div class="g" onclick="openLb('uploads/0117 Bite Me.png')"><img src="uploads/0117 Bite Me.png" alt=""><div class="g-ov"><span class="star"></span></div></div>
+      <div class="g wide" onclick="openLb('uploads/0185 Bite Me.png')"><img src="uploads/0185 Bite Me.png" alt=""><div class="g-ov"><span class="star"></span></div></div>
+      <div class="g" onclick="openLb('uploads/0186 Bite Me.png')"><img src="uploads/0186 Bite Me.png" alt=""><div class="g-ov"><span class="star"></span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="checker-band"><span class="cb-star" style="left:18%;top:32%;transform:rotate(12deg)"></span><span class="cb-star" style="right:20%;top:40%;transform:rotate(-10deg);width:30px;height:30px"></span></div>
+
+<!-- ╔════════════════════════ SHOWS ══════════════════════╗ -->
+<section id="shows" class="tex">
+  <div class="wrap pad">
+    <div class="shows-grid">
+      <div>
+        <span class="eyebrow reveal"><span class="star"></span> Agenda / Schedule</span>
+        <h2 class="headline reveal">Próximos <span class="pk">Shows</span></h2>
+        <div class="rule-check reveal"></div>
+        <ul class="show-list">
+          <li class="show-row reveal"><div class="show-date">12/06</div><div><div class="show-venue">Cross</div><div class="show-city">Curitiba — PR</div></div><a href="#contato" class="show-cta">INFO →</a></li>
+          <li class="show-row reveal"><div class="show-date">27/06</div><div><div class="show-venue">Jokers</div><div class="show-city">Curitiba — PR</div></div><a href="#contato" class="show-cta">INFO →</a></li>
+          <li class="show-row reveal"><div class="show-date">17/07</div><div><div class="show-venue">Capivaras</div><div class="show-city">Curitiba — PR</div></div><a href="#contato" class="show-cta">INFO →</a></li>
+          <li class="show-row reveal"><div class="show-date">25/07</div><div><div class="show-venue">Belvedere</div><div class="show-city">Curitiba — PR</div></div><a href="#contato" class="show-cta">INFO →</a></li>
+          <li class="show-row reveal"><div class="show-date">21/08</div><div><div class="show-venue">Balbúrdia</div><div class="show-city">Florianópolis — SC</div></div><a href="#contato" class="show-cta">INFO →</a></li>
+          <li class="show-row reveal"><div class="show-date">22/08</div><div><div class="show-venue">Balbúrdia</div><div class="show-city">Itajaí — SC</div></div><a href="#contato" class="show-cta">INFO →</a></li>
+        </ul>
+      </div>
+      <div class="shows-check reveal">
+        <div class="shows-check-badge"><div class="big">6</div><div class="small">shows<br>na agenda</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="checker-band"><span class="cb-star" style="left:24%;top:38%;transform:rotate(-14deg);width:32px;height:32px"></span><span class="cb-star" style="right:16%;top:32%;transform:rotate(8deg)"></span></div>
+
+<!-- ╔════════════════════════ VIDEO ══════════════════════╗ -->
+<section id="video" class="tex">
+  <div class="wrap pad">
+    <span class="eyebrow reveal"><span class="star"></span> Assista / Watch</span>
+    <h2 class="headline reveal">Em <span class="pk">Destaque</span></h2>
+    <div class="rule-check reveal"></div>
+    <div class="video-frame reveal">
+      <div class="video-inner">
+        <iframe src="https://www.youtube.com/embed/c2eD8bqeD6A" title="Bite Me — Tributo Avril Lavigne" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="checker-band"><span class="cb-star" style="left:16%;top:34%;transform:rotate(10deg)"></span><span class="cb-star" style="right:22%;top:40%;transform:rotate(-12deg);width:30px;height:30px"></span></div>
+
+<!-- ╔════════════════════════ CONTATO ════════════════════╗ -->
+<section id="contato" class="tex">
+  <div class="wrap pad">
+    <div class="contato-grid">
+      <div>
+        <span class="eyebrow reveal"><span class="star"></span> Contato / Contact</span>
+        <h2 class="headline reveal">Fale com<br>a <span class="pk">gente</span></h2>
+        <div class="rule-check reveal"></div>
+        <div class="contact-links reveal">
+          <a href="https://www.instagram.com/bandabiteme" target="_blank" class="clink">
+            <div class="clink-left"><span class="clink-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"></circle></svg></span><div><div class="clink-name">Instagram</div><div class="clink-sub">@bandabiteme</div></div></div><span class="clink-arr">→</span>
+          </a>
+          <a href="https://www.youtube.com/@bandabiteme" target="_blank" class="clink">
+            <div class="clink-left"><span class="clink-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 1.96A29 29 0 001 11.75a29 29 0 00.46 5.33 2.78 2.78 0 001.95 1.97C5.12 19.56 12 19.56 12 19.56s6.88 0 8.6-.46a2.78 2.78 0 001.94-1.95 29 29 0 00.46-5.25 29 29 0 00-.46-5.48z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"></polygon></svg></span><div><div class="clink-name">YouTube</div><div class="clink-sub">@bandabiteme</div></div></div><span class="clink-arr">→</span>
+          </a>
+          <a href="https://www.tiktok.com/@bandabiteme" target="_blank" class="clink">
+            <div class="clink-left"><span class="clink-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.19 8.19 0 004.79 1.53V6.77a4.84 4.84 0 01-1.02-.08z"></path></svg></span><div><div class="clink-name">TikTok</div><div class="clink-sub">@bandabiteme</div></div></div><span class="clink-arr">→</span>
+          </a>
+          <a href="mailto:contatobandabiteme@gmail.com" class="clink">
+            <div class="clink-left"><span class="clink-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span><div><div class="clink-name">E-mail</div><div class="clink-sub">contatobandabiteme@gmail.com</div></div></div><span class="clink-arr">→</span>
+          </a>
+          <a href="https://wa.me/5515998139485" target="_blank" class="clink">
+            <div class="clink-left"><span class="clink-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg></span><div><div class="clink-name">WhatsApp</div><div class="clink-sub">+55 15 99813-9485</div></div></div><span class="clink-arr">→</span>
+          </a>
+        </div>
+      </div>
+      <div class="contato-deco reveal">
+        <img src="uploads/Logo bite me branco sem fundo.png" alt="Bite Me">
+        <p class="tag">❌ the best damn <span class="pk">tribute</span> 🤘</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="checker-band"><span class="cb-star" style="left:20%;top:36%;transform:rotate(-10deg)"></span><span class="cb-star" style="right:18%;top:38%;transform:rotate(14deg);width:30px;height:30px"></span></div>
+
+<!-- ╔════════════════════════ FOOTER ═════════════════════╗ -->
+<footer>
+  <p>
+    <span class="star outline"></span><span class="star"></span><span class="star outline"></span><br><br>
+    © 2026 BITE ME — TRIBUTO AVRIL LAVIGNE · CURITIBA, BRASIL
+  </p>
+</footer>
+
+<!-- ╔════════════════════════ LIGHTBOX ═══════════════════╗ -->
+<div id="lb" onclick="closeLb()">
+  <span id="lb-close" onclick="closeLb()">✕</span>
+  <img id="lb-img" alt="" onclick="event.stopPropagation()">
+</div>
+
+<script>
+var io = new IntersectionObserver(function(es){
+  es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target);} });
+}, { threshold:0.1 });
+document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+function openLb(src){
+  document.getElementById('lb-img').src = src;
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLb(){
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLb(); });
+</script>
+
+<!-- ── THEME SWITCHER ────────────────────────────────────────── -->
+<div id="bm-switcher" style="position:fixed;bottom:24px;left:24px;z-index:9999;">
+  <button id="bm-sw-btn" onclick="bmSwitchTheme()"
+    style="display:flex;align-items:center;gap:8px;padding:10px 18px;background:rgba(15,10,18,0.92);border:1.5px solid var(--pink);color:var(--text);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(12px);">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+    Trocar Tema
+  </button>
+</div>
+<script>
+(function(){
+  if(localStorage.getItem('bm-design')==='1') window.location.replace('index.html');
+})();
+function bmSwitchTheme(){
+  localStorage.setItem('bm-design','1');
+  window.location.href='index.html';
+}
+var _bsb=document.getElementById('bm-sw-btn');
+_bsb.addEventListener('mouseover',function(){this.style.background='var(--pink)';this.style.boxShadow='0 0 20px rgba(236,28,140,0.4)';});
+_bsb.addEventListener('mouseout',function(){this.style.background='rgba(15,10,18,0.92)';this.style.boxShadow='';});
+</script>
+</body>
+</html>
+
