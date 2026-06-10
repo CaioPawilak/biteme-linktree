@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="pt-BR" data-theme="pink">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,21 +24,6 @@
   --plaid-a:     rgba(255,29,110,0.16);
   --plaid-b:     rgba(255,29,110,0.07);
 }
-[data-theme="red"] {
-  --accent:      #E8174F;
-  --accent-dim:  rgba(232,23,79,0.11);
-  --accent-glow: rgba(232,23,79,0.30);
-  --plaid-a:     rgba(232,23,79,0.16);
-  --plaid-b:     rgba(232,23,79,0.07);
-}
-[data-theme="cyan"] {
-  --accent:      #00E5FF;
-  --accent-dim:  rgba(0,229,255,0.09);
-  --accent-glow: rgba(0,229,255,0.25);
-  --plaid-a:     rgba(0,229,255,0.13);
-  --plaid-b:     rgba(0,229,255,0.05);
-}
-
 /* ── RESET ──────────────────────────────────────────────────── */
 *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
 html { scroll-behavior: smooth; }
@@ -160,7 +145,7 @@ a { text-decoration:none; color:inherit; }
 @media(max-width:600px){
   .hero-bg {
     background-size:100% auto;
-    background-position:center top;
+    background-position:center 70px;
     transform:none;
   }
   #hero:hover .hero-bg { transform:none; }
@@ -211,8 +196,8 @@ a { text-decoration:none; color:inherit; }
 }
 .sobre-photo { position:relative; }
 .sobre-photo img {
-  width:100%; aspect-ratio:4/5;
-  object-fit:cover; object-position:center top;
+  width:100%; aspect-ratio:5/4;
+  object-fit:cover; object-position:center 40%;
 }
 .sobre-photo::after {
   content:'';
@@ -225,8 +210,8 @@ a { text-decoration:none; color:inherit; }
 .sobre-photo:hover::after { transform:translate(5px,5px); }
 @media(max-width:840px){
   .sobre-grid { grid-template-columns:1fr; gap:44px; }
-  .sobre-photo { order:-1; max-height:340px; overflow:hidden; }
-  .sobre-photo img { aspect-ratio:16/9; object-position:top; }
+  .sobre-photo { order:-1; }
+  .sobre-photo img { aspect-ratio:5/4; object-position:center 40%; }
 }
 
 /* ── INTEGRANTES ─────────────────────────────────────────────── */
@@ -417,33 +402,6 @@ footer img { height:34px; margin:0 auto 14px; opacity:.35; }
 footer p   { font-size:11px; letter-spacing:.16em; color:var(--muted); }
 
 /* ── THEME SWITCHER ──────────────────────────────────────────── */
-#themes {
-  position:fixed; bottom:28px; right:28px; z-index:300;
-  background:var(--surface);
-  border:1px solid var(--border);
-  padding:12px 10px;
-  display:flex; flex-direction:column; align-items:center; gap:8px;
-  box-shadow:0 6px 30px rgba(0,0,0,.5);
-}
-.themes-lbl {
-  font-size:8px; letter-spacing:.22em; text-transform:uppercase;
-  color:var(--muted);
-}
-.themes-dots { display:flex; flex-direction:column; gap:8px; }
-.tdot {
-  width:26px; height:26px; border-radius:50%; cursor:pointer;
-  border:2px solid transparent;
-  transition:transform .2s, border-color .2s;
-}
-.tdot:hover { transform:scale(1.18); }
-.tdot.on    { border-color:#fff; transform:scale(1.12); }
-.tdot.pink  { background:#FF1D6E; }
-.tdot.red   { background:#E8174F; }
-.tdot.cyan  { background:#00E5FF; }
-@media(max-width:500px){
-  #themes { bottom:14px; right:14px; }
-}
-
 /* ── LIGHTBOX ────────────────────────────────────────────────── */
 #lb {
   display:none; position:fixed; inset:0; z-index:500;
@@ -835,28 +793,12 @@ footer p   { font-size:11px; letter-spacing:.16em; color:var(--muted); }
 </div>
 
 <!-- ╔═══════════════════════ THEME SWITCHER ══════════════════╗ -->
-<div id="themes">
-  <span class="themes-lbl">Tema</span>
-  <div class="themes-dots">
-    <div class="tdot pink on" onclick="setTheme('pink')"  title="Hot Pink"></div>
     <div class="tdot red"     onclick="setTheme('red')"   title="Logo Red"></div>
     <div class="tdot cyan"    onclick="setTheme('cyan')"  title="Electric"></div>
   </div>
 </div>
 
 <script>
-/* ── THEME ──────────────────────────────────────────── */
-function setTheme(t) {
-  document.documentElement.setAttribute('data-theme', t);
-  document.querySelectorAll('.tdot').forEach(function(d) {
-    d.classList.toggle('on', d.classList.contains(t));
-  });
-  localStorage.setItem('bm-theme', t);
-}
-(function() {
-  var saved = localStorage.getItem('bm-theme');
-  if (saved) setTheme(saved);
-})();
 
 /* ── SCROLL REVEAL ──────────────────────────────────── */
 var io = new IntersectionObserver(function(entries) {
