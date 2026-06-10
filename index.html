@@ -892,7 +892,7 @@ _bsb.addEventListener('mouseout',function(){this.style.background='rgba(22,22,22
   }
   playBtn.addEventListener('click', function(){
     if(playing){ audio.pause(); setPlaying(false); }
-    else { audio.play(); setPlaying(true); }
+    else { audio.muted = false; audio.play(); setPlaying(true); }
   });
   audio.muted = true;
   audio.play().then(function(){
@@ -907,6 +907,7 @@ _bsb.addEventListener('mouseout',function(){this.style.background='rgba(22,22,22
 
 </body>
 </html>
+
 
 
 
