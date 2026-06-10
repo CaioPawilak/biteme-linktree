@@ -403,23 +403,6 @@ footer img { height:34px; margin:0 auto 14px; opacity:.35; }
 footer p   { font-size:11px; letter-spacing:.16em; color:var(--muted); }
 
 /* ── THEME SWITCHER ──────────────────────────────────────────── */
-/* ── FLOATING PLAYER ────────────────────────────────────────── */
-#bm-player {
-  position:fixed; top:82px; right:20px; z-index:400;
-}
-#bm-play-btn {
-  width:42px; height:42px; border-radius:50%;
-  background:rgba(14,14,14,0.88);
-  border:1.5px solid var(--accent);
-  color:var(--accent); cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
-  backdrop-filter:blur(12px);
-  box-shadow:0 0 14px var(--accent-glow);
-  transition:box-shadow .2s, transform .15s;
-}
-#bm-play-btn:hover { box-shadow:0 0 24px var(--accent-glow); transform:scale(1.1); }
-#bm-play-btn svg { width:18px; height:18px; }
-
 /* ── LIGHTBOX ────────────────────────────────────────────────── */
 #lb {
   display:none; position:fixed; inset:0; z-index:500;
@@ -829,23 +812,6 @@ var io = new IntersectionObserver(function(entries) {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
 
-/* ── FLOATING PLAYER ────────────────────────────────────────── */
-#bm-player {
-  position:fixed; top:82px; right:20px; z-index:400;
-}
-#bm-play-btn {
-  width:42px; height:42px; border-radius:50%;
-  background:rgba(14,14,14,0.88);
-  border:1.5px solid var(--accent);
-  color:var(--accent); cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
-  backdrop-filter:blur(12px);
-  box-shadow:0 0 14px var(--accent-glow);
-  transition:box-shadow .2s, transform .15s;
-}
-#bm-play-btn:hover { box-shadow:0 0 24px var(--accent-glow); transform:scale(1.1); }
-#bm-play-btn svg { width:18px; height:18px; }
-
 /* ── LIGHTBOX ───────────────────────────────────────── */
 function openLb(src) {
   document.getElementById('lb-img').src = src;
@@ -924,6 +890,7 @@ _bsb.addEventListener('mouseout',function(){this.style.background='rgba(22,22,22
 
 </body>
 </html>
+
 
 
 
