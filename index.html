@@ -911,12 +911,20 @@ _bsb.addEventListener('mouseout',function(){this.style.background='rgba(22,22,22
     if(playing){ audio.pause(); setPlaying(false); }
     else { audio.play(); setPlaying(true); }
   });
-  audio.play().then(function(){ setPlaying(true); }).catch(function(){});
+  audio.muted = true;
+  audio.play().then(function(){
+    setPlaying(true);
+    function unmute(){ audio.muted = false; }
+    document.addEventListener('click',    unmute, { once:true });
+    document.addEventListener('scroll',   unmute, { once:true });
+    document.addEventListener('touchstart', unmute, { once:true });
+  }).catch(function(){});
 })();
 </script>
 
 </body>
 </html>
+
 
 
 
