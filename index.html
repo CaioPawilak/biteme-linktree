@@ -430,6 +430,23 @@ footer p   { font-size:11px; letter-spacing:.16em; color:var(--muted); }
   transition:opacity .65s ease, transform .65s ease;
 }
 .reveal.vis { opacity:1; transform:translateY(0); }
+/* ── FLOATING PLAYER ────────────────────────────────────────── */
+#bm-player {
+  position:fixed; bottom:24px; right:24px; z-index:400;
+}
+#bm-play-btn {
+  width:44px; height:44px; border-radius:50%;
+  background:rgba(14,14,14,0.9);
+  border:1.5px solid var(--accent);
+  color:var(--accent); cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  backdrop-filter:blur(12px);
+  box-shadow:0 0 14px var(--accent-glow);
+  transition:box-shadow .2s, transform .15s;
+}
+#bm-play-btn:hover { box-shadow:0 0 26px var(--accent-glow); transform:scale(1.1); }
+#bm-play-btn svg { width:18px; height:18px; }
+
 </style>
 </head>
 <body>
@@ -890,6 +907,7 @@ _bsb.addEventListener('mouseout',function(){this.style.background='rgba(22,22,22
 
 </body>
 </html>
+
 
 
 
