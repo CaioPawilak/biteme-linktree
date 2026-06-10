@@ -239,6 +239,23 @@ footer p { font-family:'Special Elite',monospace; font-size:12px; color:var(--mu
 /* ── REVEAL ─────────────────────────────────────────────────── */
 .reveal { opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
 .reveal.vis { opacity:1; transform:translateY(0); }
+
+/* ── FLOATING PLAYER ────────────────────────────────────────── */
+#bm-player {
+  position:fixed; top:82px; right:20px; z-index:400;
+}
+#bm-play-btn {
+  width:42px; height:42px; border-radius:50%;
+  background:rgba(15,10,18,0.88);
+  border:1.5px solid var(--pink);
+  color:var(--pink); cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  backdrop-filter:blur(12px);
+  box-shadow:0 0 14px rgba(236,28,140,0.35);
+  transition:box-shadow .2s, transform .15s;
+}
+#bm-play-btn:hover { box-shadow:0 0 24px rgba(236,28,140,0.55); transform:scale(1.1); }
+#bm-play-btn svg { width:18px; height:18px; }
 </style>
 </head>
 <body>
@@ -297,9 +314,6 @@ footer p { font-family:'Special Elite',monospace; font-size:12px; color:var(--mu
         <p>❌🖤 <strong>Bite Me</strong> é um tributo autêntico a Avril Lavigne criado <em>de fã para fã</em>. Energia crua, atitude pop-punk e muita nostalgia dos anos 2000.</p>
         <p>From Curitiba with love — reproduzindo com fidelidade os maiores hits, de <em>Complicated</em> a <em>Bite Me</em>. Cada show é a melhor "damn thing" da sua noite.</p>
         <p><strong>Curitiba, Paraná · Brasil</strong></p>
-        <div style="margin-top:24px;opacity:.8;">
-          <iframe style="border-radius:8px" src="https://open.spotify.com/embed/track/45hOioMDJktr86iKDHC8gr?utm_source=generator&theme=0&autoplay=1" width="100%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
       </div>
       <div class="sobre-photo reveal">
         <img src="uploads/0224 Bite Me.png" alt="Banda Bite Me">
@@ -497,8 +511,45 @@ var _bsb=document.getElementById('bm-sw-btn');
 _bsb.addEventListener('mouseover',function(){this.style.background='var(--pink)';this.style.boxShadow='0 0 20px rgba(236,28,140,0.4)';});
 _bsb.addEventListener('mouseout',function(){this.style.background='rgba(15,10,18,0.92)';this.style.boxShadow='';});
 </script>
+
+<!-- ╔════════════════════════ FLOATING PLAYER ════════════════╗ -->
+<audio id="bm-audio" src="WhatTheHell.mp3" preload="auto" loop></audio>
+<div id="bm-player">
+  <button id="bm-play-btn" aria-label="Play / Pause">
+    <svg id="bm-icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    <svg id="bm-icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  </button>
+</div>
+<script>
+(function(){
+  var audio = document.getElementById('bm-audio');
+  var playBtn = document.getElementById('bm-play-btn');
+  var iconPlay = document.getElementById('bm-icon-play');
+  var iconPause = document.getElementById('bm-icon-pause');
+  var playing = false;
+  function setPlaying(v){
+    playing = v;
+    iconPlay.style.display  = v ? 'none' : '';
+    iconPause.style.display = v ? '' : 'none';
+  }
+  playBtn.addEventListener('click', function(){
+    if(playing){ audio.pause(); setPlaying(false); }
+    else { audio.play(); setPlaying(true); }
+  });
+  audio.muted = true;
+  audio.play().then(function(){
+    setPlaying(true);
+    function unmute(){ audio.muted = false; }
+    document.addEventListener('click',     unmute, { once:true });
+    document.addEventListener('scroll',    unmute, { once:true });
+    document.addEventListener('touchstart',unmute, { once:true });
+  }).catch(function(){});
+})();
+</script>
 </body>
 </html>
+
+
 
 
 
