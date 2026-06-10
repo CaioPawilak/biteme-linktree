@@ -157,6 +157,14 @@ a { text-decoration:none; color:inherit; }
   0%,100% { opacity:.35; transform:translateX(-50%) translateY(0); }
   50%      { opacity:.9;  transform:translateX(-50%) translateY(8px); }
 }
+@media(max-width:600px){
+  .hero-bg {
+    background-size:100% auto;
+    background-position:center top;
+    transform:none;
+  }
+  #hero:hover .hero-bg { transform:none; }
+}
 
 /* ── SECTION HEADERS ────────────────────────────────────────── */
 .sec-eyebrow {
@@ -904,4 +912,5 @@ _bsb.addEventListener('mouseout',function(){this.style.background='rgba(22,22,22
 </script>
 </body>
 </html>
+
 
